@@ -31,6 +31,8 @@ public class PalindromeCheckerApp {
         uc10NormalizedCheck("A man a plan a canal Panama");
 
         uc11OOPCheck("rotor");
+        uc12StrategyCheck("level", new StackStrategy(), "Stack Strategy");
+        uc12StrategyCheck("radar", new DequeStrategy(), "Deque Strategy");
     }
 
     // UC2 - Hardcoded String Check
@@ -321,4 +323,45 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is NOT a Palindrome\n");
         }
     }
+    // UC12 - Strategy Pattern for Palindrome Algorithms
+    interface PalindromeStrategy {
+        boolean isPalindrome(String input);
+    }
+    // Stack Based Strategy
+    static class StackStrategy implements PalindromeStrategy {
+        public boolean isPalindrome(String input) {
+            Stack<Character> stack = new Stack<>();
+            for (char c : input.toCharArray()) {
+                stack.push(c);
+            }
+
+            for (char c : input.toCharArray()) {
+                if (c != stack.pop()) return false;
+            }
+            return true;
+        }
+    }
+
+    // Deque Based Strategy
+    static class DequeStrategy implements PalindromeStrategy {
+        public boolean isPalindrome(String input) {
+            Deque<Character> deque = new ArrayDeque<>();
+            for (char c : input.toCharArray()) deque.add(c);
+
+            while (deque.size() > 1) {
+                if (deque.removeFirst() != deque.removeLast()) return false;
+            }
+            return true;
+        }
+    }
+    public static void uc12StrategyCheck(String input, PalindromeStrategy strategy, String strategyName) {
+        System.out.println("UC12 - Strategy Pattern Check using " + strategyName);
+        boolean result = strategy.isPalindrome(input);
+        if (result) {
+            System.out.println(input + " is a Palindrome\n");
+        } else {
+            System.out.println(input + " is NOT a Palindrome\n");
+        }
+    }
+
 }
