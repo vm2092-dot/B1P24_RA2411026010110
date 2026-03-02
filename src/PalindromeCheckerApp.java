@@ -188,7 +188,6 @@ public class PalindromeCheckerApp {
             return;
         }
 
-        // Step 1: Convert string to linked list
         Node head = new Node(input.charAt(0));
         Node current = head;
 
@@ -197,7 +196,6 @@ public class PalindromeCheckerApp {
             current = current.next;
         }
 
-        // Step 2: Find middle using fast & slow pointer
         Node slow = head;
         Node fast = head;
 
@@ -206,7 +204,6 @@ public class PalindromeCheckerApp {
             fast = fast.next.next;
         }
 
-        // Step 3: Reverse second half
         Node prev = null;
         Node next;
 
@@ -217,7 +214,6 @@ public class PalindromeCheckerApp {
             slow = next;
         }
 
-        // Step 4: Compare halves
         Node firstHalf = head;
         Node secondHalf = prev;
 
@@ -238,7 +234,6 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is NOT a Palindrome\n");
         }
     }
-    // UC9 - Recursive Palindrome Checker
     public static void uc9RecursiveCheck(String input) {
         System.out.println("UC9 - Recursive Palindrome Check");
 
@@ -252,27 +247,21 @@ public class PalindromeCheckerApp {
     }
 
     private static boolean isPalindromeRecursive(String input, int start, int end) {
-        // Base condition
         if (start >= end) {
             return true;
         }
 
-        // If characters don't match
         if (input.charAt(start) != input.charAt(end)) {
             return false;
         }
 
-        // Recursive call
         return isPalindromeRecursive(input, start + 1, end - 1);
     }
-    // UC10 - Case-Insensitive & Space-Ignored Palindrome Check
     public static void uc10NormalizedCheck(String input) {
         System.out.println("UC10 - Case Insensitive & Space Ignored Check");
 
-        // Step 1: Normalize string
         String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        // Step 2: Check palindrome using two-pointer
         int start = 0;
         int end = normalized.length() - 1;
         boolean isPalindrome = true;
@@ -292,7 +281,6 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is NOT a Palindrome\n");
         }
     }
-    // UC11 - Object-Oriented Palindrome Service
     static class PalindromeService {
 
         public boolean checkPalindrome(String input) {
@@ -326,11 +314,9 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is NOT a Palindrome\n");
         }
     }
-    // UC12 - Strategy Pattern for Palindrome Algorithms
     interface PalindromeStrategy {
         boolean isPalindrome(String input);
     }
-    // Stack Based Strategy
     static class StackStrategy implements PalindromeStrategy {
         public boolean isPalindrome(String input) {
             Stack<Character> stack = new Stack<>();
@@ -345,7 +331,6 @@ public class PalindromeCheckerApp {
         }
     }
 
-    // Deque Based Strategy
     static class DequeStrategy implements PalindromeStrategy {
         public boolean isPalindrome(String input) {
             Deque<Character> deque = new ArrayDeque<>();
@@ -366,13 +351,11 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is NOT a Palindrome\n");
         }
     }
-    // UC13 - Performance Comparison
     public static void uc13PerformanceCheck(String input) {
         System.out.println("UC13 - Performance Comparison");
 
         long start, end;
 
-        // Stack Strategy
         start = System.nanoTime();
         Stack<Character> stack = new Stack<>();
         for (char c : input.toCharArray()) stack.push(c);
@@ -380,7 +363,6 @@ public class PalindromeCheckerApp {
         end = System.nanoTime();
         System.out.println("Stack Strategy time: " + (end - start) + " ns");
 
-        // Deque Strategy
         start = System.nanoTime();
         Deque<Character> deque = new ArrayDeque<>();
         for (char c : input.toCharArray()) deque.add(c);
@@ -388,7 +370,6 @@ public class PalindromeCheckerApp {
         end = System.nanoTime();
         System.out.println("Deque Strategy time: " + (end - start) + " ns");
 
-        // Char Array Two Pointer
         start = System.nanoTime();
         char[] arr = input.toCharArray();
         int s = 0, e = arr.length - 1;
