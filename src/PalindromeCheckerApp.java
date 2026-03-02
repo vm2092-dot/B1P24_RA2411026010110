@@ -23,6 +23,8 @@ public class PalindromeCheckerApp {
         uc6QueueStackCheck("radar");
 
         uc7DequeCheck("civic");
+
+        uc8LinkedListCheck("noon");
     }
 
     // UC2 - Hardcoded String Check
@@ -148,6 +150,75 @@ public class PalindromeCheckerApp {
                 isPalindrome = false;
                 break;
             }
+        }
+
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome\n");
+        } else {
+            System.out.println(input + " is NOT a Palindrome\n");
+        }
+    }
+    // UC8 - Linked List Based Palindrome Checker
+    static class Node {
+        char data;
+        Node next;
+
+        Node(char data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static void uc8LinkedListCheck(String input) {
+        System.out.println("UC8 - Linked List Based Palindrome Check");
+
+        if (input == null || input.length() == 0) {
+            System.out.println("Empty string\n");
+            return;
+        }
+
+        // Step 1: Convert string to linked list
+        Node head = new Node(input.charAt(0));
+        Node current = head;
+
+        for (int i = 1; i < input.length(); i++) {
+            current.next = new Node(input.charAt(i));
+            current = current.next;
+        }
+
+        // Step 2: Find middle using fast & slow pointer
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Step 3: Reverse second half
+        Node prev = null;
+        Node next;
+
+        while (slow != null) {
+            next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+
+        // Step 4: Compare halves
+        Node firstHalf = head;
+        Node secondHalf = prev;
+
+        boolean isPalindrome = true;
+
+        while (secondHalf != null) {
+            if (firstHalf.data != secondHalf.data) {
+                isPalindrome = false;
+                break;
+            }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
         }
 
         if (isPalindrome) {
