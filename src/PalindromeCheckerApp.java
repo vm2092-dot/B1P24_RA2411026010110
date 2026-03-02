@@ -29,6 +29,8 @@ public class PalindromeCheckerApp {
         uc9RecursiveCheck("refer");
 
         uc10NormalizedCheck("A man a plan a canal Panama");
+
+        uc11OOPCheck("rotor");
     }
 
     // UC2 - Hardcoded String Check
@@ -280,6 +282,40 @@ public class PalindromeCheckerApp {
         }
 
         if (isPalindrome) {
+            System.out.println(input + " is a Palindrome\n");
+        } else {
+            System.out.println(input + " is NOT a Palindrome\n");
+        }
+    }
+    // UC11 - Object-Oriented Palindrome Service
+    static class PalindromeService {
+
+        public boolean checkPalindrome(String input) {
+            if (input == null) {
+                return false;
+            }
+
+            int start = 0;
+            int end = input.length() - 1;
+
+            while (start < end) {
+                if (input.charAt(start) != input.charAt(end)) {
+                    return false;
+                }
+                start++;
+                end--;
+            }
+
+            return true;
+        }
+    }
+    public static void uc11OOPCheck(String input) {
+        System.out.println("UC11 - Object Oriented Palindrome Service");
+
+        PalindromeService service = new PalindromeService();
+        boolean result = service.checkPalindrome(input);
+
+        if (result) {
             System.out.println(input + " is a Palindrome\n");
         } else {
             System.out.println(input + " is NOT a Palindrome\n");
