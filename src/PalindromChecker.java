@@ -11,6 +11,7 @@ public class PalindromChecker {
         System.out.println("      Palindrome Checker App     ");
         System.out.println("      Version 1.0                ");
         System.out.println("=================================\n");
+        System.out.println("=================================\n");
 
         uc2HardcodedCheck();
 
