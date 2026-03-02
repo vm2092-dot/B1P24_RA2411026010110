@@ -4,13 +4,12 @@ import java.util.LinkedList;
 import java.util.Deque;
 import java.util.ArrayDeque;
 
-public class PalindromChecker {
+public class PalindromeCheckerApp {
     // UC1 - Application Entry
     public static void main(String[] args) {
         System.out.println("=================================");
         System.out.println("      Palindrome Checker App     ");
         System.out.println("      Version 1.0                ");
-        System.out.println("=================================\n");
         System.out.println("=================================\n");
 
         uc2HardcodedCheck();
